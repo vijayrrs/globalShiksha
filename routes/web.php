@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'IndexController@index');
 
 Route::get('/companies/{industryId}', 'IndexController@companies');
+
+Route::get('/companyDetails/{companyId}', 'IndexController@companyDetails');

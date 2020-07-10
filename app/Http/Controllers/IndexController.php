@@ -17,4 +17,9 @@ class IndexController extends Controller
     	$data = Company::get($industryId, 1, 10);
     	return view('companies',['companies' => $data]);
     }
+
+    public function companyDetails($companyId) {
+    	$data = Company::getDetails($companyId, 1, 10);//echo "<pre>";print_r($data);die;
+    	return view('companyDetails',['companyDetails' => $data]);
+    }
 }

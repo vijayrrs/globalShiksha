@@ -102,6 +102,52 @@ class ScrapWeb extends Command
                 $companyAge = $ageNode->filter("td")->eq(1)->text();
                 $registerNode = $newCrawler->filter("#companyinformation table tr")->eq(4);
                 $registerNumber = $registerNode->filter("td")->eq(1)->text();
+
+                $cinNoNode = $newCrawler->filter("#companyinformation table tr")->eq(0);
+                $cinNo = $cinNoNode->filter("td")->eq(1)->text();
+                $categoryNode = $newCrawler->filter("#companyinformation table tr")->eq(5);
+                $categoryName = $categoryNode->filter("td")->eq(1)->text();
+
+                $subCategoryNode = $newCrawler->filter("#companyinformation table tr")->eq(6);
+                $subCategoryName = $subCategoryNode->filter("td")->eq(1)->text();
+                $rocNode = $newCrawler->filter("#companyinformation table tr")->eq(8);
+                $rocCode = $rocNode->filter("td")->eq(1)->text();
+
+                $emailNode = $newCrawler->filter("#contactdetails table tr")->eq(0);
+                $emailaddr = $emailNode->filter("td")->eq(1)->text();
+                $registeredOfficeNode = $newCrawler->filter("#contactdetails table tr")->eq(1);
+                $registeredOfficeCode = $registeredOfficeNode->filter("td")->eq(1)->text();
+
+                $stateNode = $newCrawler->filter("#otherinformation table tr")->eq(0);
+                $state = $stateNode->filter("td")->eq(1)->text();
+                $districtNode = $newCrawler->filter("#otherinformation table tr")->eq(1);
+                $district = $districtNode->filter("td")->eq(1)->text();
+                $cityNode = $newCrawler->filter("#otherinformation table tr")->eq(2);
+                $city = $cityNode->filter("td")->eq(1)->text();
+                $pinNode = $newCrawler->filter("#otherinformation table tr")->eq(3);
+                $pin = $pinNode->filter("td")->eq(1)->text();
+
+                
+                if($newCrawler->filter("#directors table tr")->eq(0)->count() > 1){
+                    $diNoNode1 = $newCrawler->filter("#directors table tr")->eq(0);
+                        $diNo = $diNoNode1->filter("td")->eq(0)->text();
+                        $diName = $diNoNode1->filter("td")->eq(1)->text();
+                        $diDesignation = $diNoNode1->filter("td")->eq(2)->text();
+                        $diDateOfAppointment = $diNoNode1->filter("td")->eq(3)->text();    
+                    
+                    $diNoNode2 = $newCrawler->filter("#directors table tr")->eq(1);
+                        $diNo2 = $diNoNode2->filter("td")->eq(0)->text();
+                        $diName2 = $diNoNode2->filter("td")->eq(1)->text();
+                        $diDesignation2 = $diNoNode2->filter("td")->eq(2)->text();
+                        $diDateOfAppointment2 = $diNoNode2->filter("td")->eq(3)->text();    
+                    
+                    $diNoNode3 = $newCrawler->filter("#directors table tr")->eq(2);
+                        $diNo3 = $diNoNode3->filter("td")->eq(0)->text();
+                        $diName3 = $diNoNode3->filter("td")->eq(1)->text();
+                        $diDesignation3 = $diNoNode3->filter("td")->eq(2)->text();
+                        $diDateOfAppointment3 = $diNoNode3->filter("td")->eq(3)->text();
+                }
+
                 $company = new Company();
                 $company->industry_id = $industryId;
                 $company->name = $companyName;
@@ -111,6 +157,31 @@ class ScrapWeb extends Command
                 $company->status = $companyStatus;
                 $company->age = $companyAge;
                 $company->registration_number = $registerNumber;
+
+                $company->cin_no = $cinNo;
+                $company->category_name = $categoryName;
+                $company->sub_category_name = $subCategoryName;
+                $company->roc_no = $rocCode;
+                $company->email_addr = $emailaddr;
+                $company->registered_office = $registeredOfficeCode;
+                $company->state = $state;
+                $company->district = $district;
+                $company->city = $city;
+                $company->pin = $pin;
+                if($newCrawler->filter("#directors table tr")->eq(0)->count() > 1){
+                    $company->d_No = $diNo;
+                    $company->d_Name = $diName;
+                    $company->d_Designation = $diDesignation;
+                    $company->d_DateOfAppointment = $diDateOfAppointment;
+                    $company->d_No2 = $diNo2;
+                    $company->d_Name2 = $diName2;
+                    $company->d_Designation2 = $diDesignation2;
+                    $company->d_DateOfAppointment2 = $diDateOfAppointment2;
+                    $company->d_No3 = $diNo3;
+                    $company->d_Name3 = $diName3;
+                    $company->d_Designation3 = $diDesignation3;
+                    $company->d_DateOfAppointment3 = $diDateOfAppointment3;
+                }
                 $company->save();
             }
         });
