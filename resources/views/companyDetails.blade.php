@@ -6,18 +6,19 @@
 </div>
 <div class="card">
 <table class="table" id="table">
+    <caption><strong>Company Information:</strong></caption>
     <thead>
         <tr align= "left">
-            <th class="text-center">#</th>
-            <th class="text-center">Corporate Identification Number</th>
-            <th class="text-center">Company Name</th>
-            <th class="text-center">Company Status</th>
-            <th class="text-center">Age (Date of Incorporation)</th>
-            <th class="text-center">Registration Number</th>
-            <th class="text-center">Company Category</th>
-            <th class="text-center">Company Subcategory</th>
-            <th class="text-center">Class of Company</th>
-            <th class="text-center">ROC Code</th>
+            <th>#</th>
+            <th>Corporate Identification Number</th>
+            <th>Company Name</th>
+            <th>Company Status</th>
+            <th>Age (Date of Incorporation)</th>
+            <th>Registration Number</th>
+            <th>Company Category</th>
+            <th>Company Subcategory</th>
+            <th>Class of Company</th>
+            <th>ROC Code</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +42,7 @@
 
 <div class="card">
 <table class="table" id="table">
+    <caption><strong>CONTACT DETAILS:</strong></caption>
     <thead>
         <tr align= "left">
             <th class="text-center">#</th>
@@ -62,13 +64,14 @@
 
 <div class="card">
 <table class="table" id="table">
+    <caption><strong>Location:</strong></caption>
     <thead>
         <tr align= "left">
-            <th class="text-center">#</th>
-            <th class="text-center">State</th>
-            <th class="text-center">District</th>
-            <th class="text-center">City</th>
-            <th class="text-center">Pin</th>
+            <th>#</th>
+            <th>State</th>
+            <th>District</th>
+            <th>City</th>
+            <th>Pin</th>
         </tr>
     </thead>
     <tbody>
@@ -85,4 +88,28 @@
 </table>
 </div>
 
+<div class="card">
+<table class="table" id="table">
+    <caption><strong>Directors:</strong></caption>
+    <thead>
+        <tr align= "left">
+            <th>#</th>
+            <th>Director Identification Number</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Date of Appointment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($companyDetails as $item)
+            <tr>
+                <td>{{$item->d_No}}</td>
+                <td>{{$item->d_Name}}</td>
+                <td>{{$item->d_Designation}}</td>
+                <td>{{$item->d_DateOfAppointment}}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+</div>
 @include('layout.footer')

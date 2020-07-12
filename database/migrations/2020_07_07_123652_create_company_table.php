@@ -23,6 +23,27 @@ class CreateCompanyTable extends Migration
             $table->text("age");
             $table->text("registration_number");
             $table->string("status");
+
+            $table->string("cin_no");
+            $table->string("category_name");
+            $table->string("sub_category_name");
+            $table->string("pin");
+            $table->string("roc_no");
+            $table->text("email_addr");
+            $table->text("registered_office");
+            $table->text("state");
+            $table->string("district");
+            $table->string("city");
+
+            $table->string("d_DateOfAppointment");
+            $table->string("d_Designation");
+            $table->string("d_Name");
+            $table->integer("d_No");
+            $table->string("d_DateOfAppointment2");
+            $table->string("d_Designation2");
+            $table->string("d_Name2");
+            $table->integer("d_No2");
+
             $table->timestamps();
         });
     }

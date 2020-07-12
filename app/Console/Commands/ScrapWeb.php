@@ -127,25 +127,26 @@ class ScrapWeb extends Command
                 $pinNode = $newCrawler->filter("#otherinformation table tr")->eq(3);
                 $pin = $pinNode->filter("td")->eq(1)->text();
 
-                
-                if($newCrawler->filter("#directors table tr")->eq(0)->count() > 1){
-                    $diNoNode1 = $newCrawler->filter("#directors table tr")->eq(0);
+                //echo "<pre>";print_r($newCrawler->filter("#directors table tr"));
+                if($newCrawler->filter("#directors table tr")->count() > 1){
+                    $diNoNode1 = $newCrawler->filter("#directors table tr")->eq(1);
+                   // echo "<pre>";print_r($diNoNode1->filter("td")->eq(0)->text());
                         $diNo = $diNoNode1->filter("td")->eq(0)->text();
                         $diName = $diNoNode1->filter("td")->eq(1)->text();
                         $diDesignation = $diNoNode1->filter("td")->eq(2)->text();
                         $diDateOfAppointment = $diNoNode1->filter("td")->eq(3)->text();    
                     
-                    $diNoNode2 = $newCrawler->filter("#directors table tr")->eq(1);
+                    $diNoNode2 = $newCrawler->filter("#directors table tr")->eq(2);
                         $diNo2 = $diNoNode2->filter("td")->eq(0)->text();
                         $diName2 = $diNoNode2->filter("td")->eq(1)->text();
                         $diDesignation2 = $diNoNode2->filter("td")->eq(2)->text();
                         $diDateOfAppointment2 = $diNoNode2->filter("td")->eq(3)->text();    
                     
-                    $diNoNode3 = $newCrawler->filter("#directors table tr")->eq(2);
-                        $diNo3 = $diNoNode3->filter("td")->eq(0)->text();
-                        $diName3 = $diNoNode3->filter("td")->eq(1)->text();
-                        $diDesignation3 = $diNoNode3->filter("td")->eq(2)->text();
-                        $diDateOfAppointment3 = $diNoNode3->filter("td")->eq(3)->text();
+                    // $diNoNode3 = $newCrawler->filter("#directors table tr")->eq(3);
+                    //     $diNo3 = $diNoNode3->filter("td")->eq(0)->text();
+                    //     $diName3 = $diNoNode3->filter("td")->eq(1)->text();
+                    //     $diDesignation3 = $diNoNode3->filter("td")->eq(2)->text();
+                    //     $diDateOfAppointment3 = $diNoNode3->filter("td")->eq(3)->text();
                 }
 
                 $company = new Company();
@@ -168,7 +169,7 @@ class ScrapWeb extends Command
                 $company->district = $district;
                 $company->city = $city;
                 $company->pin = $pin;
-                if($newCrawler->filter("#directors table tr")->eq(0)->count() > 1){
+                if($newCrawler->filter("#directors table tr")->count() > 1){
                     $company->d_No = $diNo;
                     $company->d_Name = $diName;
                     $company->d_Designation = $diDesignation;
@@ -176,11 +177,7 @@ class ScrapWeb extends Command
                     $company->d_No2 = $diNo2;
                     $company->d_Name2 = $diName2;
                     $company->d_Designation2 = $diDesignation2;
-                    $company->d_DateOfAppointment2 = $diDateOfAppointment2;
-                    $company->d_No3 = $diNo3;
-                    $company->d_Name3 = $diName3;
-                    $company->d_Designation3 = $diDesignation3;
-                    $company->d_DateOfAppointment3 = $diDateOfAppointment3;
+                    // $company->d_DateOfAppointment2 = $diDateOfAppointment2;
                 }
                 $company->save();
             }
